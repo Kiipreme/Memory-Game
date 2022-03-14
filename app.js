@@ -33,3 +33,30 @@ function startGame() {
 }
 
 startGame();
+
+// Shows values of cards on each card when start button is pressed
+
+// function values() {
+//   startButton.addEventListener("click", function () {
+//     for (let i = 0; i < pairValues.length; i++) {
+//       pairValues.forEach((pair) => {
+//         cards.innerHTML = pair[i];
+//         console.log(cards.innerHTML);
+//       });
+//     }
+//   });
+// }
+function values() {
+  startButton.addEventListener("click", function () {
+    for (let i = 0; i < pairValues.length; i++) {
+      cards.forEach((card) => {
+        card.innerHTML[i] = pairValues[i];
+        console.log(cards.innerHTML);
+      });
+    }
+  });
+}
+
+values();
+console.log(cards);
+console.log(pairValues);

@@ -13,11 +13,14 @@ h1 {
 }
 
 .row1 .row2 .row3 {
-display: inline-block;
+  display: inline-block;
 }
 
 .cards {
   width: 80px;
   height: 120px;
   border: 3px solid blue;
+  text-align: center;
+  /* font-size: 105px; */
+  font-weight: bold;
 }
