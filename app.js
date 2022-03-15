@@ -39,24 +39,31 @@ startGame();
 // function values() {
 //   startButton.addEventListener("click", function () {
 //     for (let i = 0; i < pairValues.length; i++) {
-//       pairValues.forEach((pair) => {
-//         cards.innerHTML = pair[i];
+//       cards.forEach((card) => {
+//         card.innerHTML = pairValues[i];
 //         console.log(cards.innerHTML);
 //       });
 //     }
 //   });
 // }
+
 function values() {
   startButton.addEventListener("click", function () {
-    for (let i = 0; i < pairValues.length; i++) {
-      cards.forEach((card) => {
-        card.innerHTML[i] = pairValues[i];
-        console.log(cards.innerHTML);
-      });
-    }
+    cards.forEach((card) => {
+      for (let i = 0; i < pairValues.length; i++) {
+        card.innerHTML = pairValues[i];
+      }
+    });
   });
 }
 
 values();
 console.log(cards);
 console.log(pairValues);
+
+// Picking two cards
+function selecting(pair1, pair2) {
+  cards.forEach((card) => {
+    console.log();
+  });
+}
