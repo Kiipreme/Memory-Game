@@ -1,9 +1,8 @@
 const startButton = document.querySelector(".start");
-const restartButton = document.querySelector(".restart");
 let cards = document.querySelectorAll(".cards");
 
 // Array of cards values.
-const pairValues = [
+let pairValues = [
   "A",
   "A",
   "B",
@@ -27,43 +26,64 @@ const pairValues = [
 // Shows the cards with the start button.
 function startGame() {
   startButton.addEventListener("click", function () {
-    cards.forEach((card) => (card.hidden = false));
-    console.log("button works");
+    shuffleArray(pairValues);
+    cards.forEach((card, i) => {
+      console.log(pairValues[i]);
+      card.children[0].innerHTML = pairValues[i];
+    });
+    cards.forEach((card) => {
+      card.hidden = false;
+      card.children[0].hidden = false;
+    });
+    setTimeout(function () {
+      cards.forEach((card) => (card.children[0].hidden = true));
+    }, 3500);
+    startButton.innerHTML = "Restart";
   });
+}
+
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
 }
 
 startGame();
 
-// Shows values of cards on each card when start button is pressed
+let prev = null;
 
-// function values() {
-//   startButton.addEventListener("click", function () {
-//     for (let i = 0; i < pairValues.length; i++) {
-//       cards.forEach((card) => {
-//         card.innerHTML = pairValues[i];
-//         console.log(cards.innerHTML);
-//       });
-//     }
-//   });
-// }
+function selecting() {
+  cards.forEach((card) => {
+    card.addEventListener("click", function () {
+      card.children[0].hidden = false;
 
-function values() {
-  startButton.addEventListener("click", function () {
-    cards.forEach((card) => {
-      for (let i = 0; i < pairValues.length; i++) {
-        card.innerHTML = pairValues[i];
+      if (prev == null) {
+        // revealing first card
+        prev = card;
+      } else if (
+        //Matching letters and different cards
+        prev != null &&
+        prev.children[0].innerHTML === card.children[0].innerHTML &&
+        prev != card
+      ) {
+        setTimeout(function () {
+          card.hidden = true;
+          prev.hidden = true;
+          prev = null;
+        }, 500);
+      } else if (prev != card) {
+        // Not matching letters and cards
+        setTimeout(function () {
+          card.children[0].hidden = true;
+          prev.children[0].hidden = true;
+          prev = null;
+        }, 500);
       }
     });
   });
 }
 
-values();
-console.log(cards);
-console.log(pairValues);
-
-// Picking two cards
-function selecting(pair1, pair2) {
-  cards.forEach((card) => {
-    console.log();
-  });
-}
+selecting();
